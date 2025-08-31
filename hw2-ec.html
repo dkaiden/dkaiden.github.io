@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 2 Extra Credit - Currency Converter">
+    <title>Homework 2 - Extra Credit | Web Programming Assignments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .currency-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .currency-table th, .currency-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .currency-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .currency-table input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .currency-table input[type="text"]:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        
+        .value-cell {
+            text-align: right;
+            font-family: monospace;
+        }
+        
+        .usd-input {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Homework 2 - Extra Credit: Currency Converter</h1>
+        
+        <p>Enter an amount in U.S. Dollars to convert to other currencies:</p>
+        
+        <table class="currency-table">
+            <thead>
+                <tr>
+                    <th>Currency</th>
+                    <th>Rate</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Euro</td>
+                    <td>0.92</td>
+                    <td class="value-cell"><input type="text" id="euro" readonly></td>
+                </tr>
+                <tr>
+                    <td>Canadian Dollar</td>
+                    <td>1.38</td>
+                    <td class="value-cell"><input type="text" id="cad" readonly></td>
+                </tr>
+                <tr>
+                    <td>Hong Kong Dollar</td>
+                    <td>7.81</td>
+                    <td class="value-cell"><input type="text" id="hkd" readonly></td>
+                </tr>
+                <tr>
+                    <td>Japanese Yen</td>
+                    <td>156.73</td>
+                    <td class="value-cell"><input type="text" id="jpy" readonly></td>
+                </tr>
+                <tr>
+                    <td>Mexican Peso</td>
+                    <td>18.41</td>
+                    <td class="value-cell"><input type="text" id="mxn" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="usd-input">
+            <label for="usd">Enter Amount of U.S. Dollars:</label>
+            <input type="number" id="usd" placeholder="Enter amount" step="0.01" oninput="convertCurrency()">
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="hw2.html" class="back-link">Back to Homework 2 Main Page</a>
+            <a href="hw1.html" class="back-link">Back to Assignments</a>
+        </div>
+    </div>
+
+    <script>
+        function convertCurrency() {
+            const usdInput = document.getElementById('usd').value;
+            
+            if (usdInput === '' || isNaN(usdInput)) {
+                clearOutputs();
+                return;
+            }
+            
+            const usdAmount = parseFloat(usdInput);
+            
+            // Exchange rates
+            const rates = {
+                euro: 0.92,
+                cad: 1.38,
+                hkd: 7.81,
+                jpy: 156.73,
+                mxn: 18.41
+            };
+            
+            // Calculate and display converted amounts
+            for (const currency in rates) {
+                const converted = usdAmount * rates[currency];
+                document.getElementById(currency).value = converted.toFixed(2);
+            }
+        }
+        
+        function clearOutputs() {
+            document.getElementById('euro').value = '';
+            document.getElementById('cad').value = '';
+            document.getElementById('hkd').value = '';
+            document.getElementById('jpy').value = '';
+            document.getElementById('mxn').value = '';
+        }
+    </script>
+</body>
+</html>
