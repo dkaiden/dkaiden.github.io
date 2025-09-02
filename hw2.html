@@ -15,7 +15,7 @@
             background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
         }
         
-        .container {
+        main {
             max-width: 800px;
             margin: 0 auto;
             background-color: white;
@@ -29,11 +29,6 @@
             color: #2c3e50;
             border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
-        }
-        
-        h2 {
-            color: #2c3e50;
-            margin-top: 30px;
         }
         
         .back-link {
@@ -80,158 +75,42 @@
             color: #6c757d;
         }
         
-        /* Part 1 specific styles */
-        .styled-output {
-            font-size: 24px;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
+        .part-links {
+            margin: 30px 0;
         }
         
-        .xy {
-            font-weight: bold;
-            font-family: 'Times New Roman', serif;
-            color: red;
-        }
-        
-        .twelve {
-            color: blue;
-            font-family: Arial, sans-serif;
-        }
-        
-        .eightynine {
-            color: green;
-            font-style: italic;
-            font-family: Impact, Charcoal, sans-serif;
-        }
-        
-        /* Part 2 specific styles */
-        .input-form {
-            margin: 20px auto;
-            max-width: 500px;
-            text-align: left;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        
-        .btn {
-            padding: 10px 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #2980b9;
-        }
-        
-        .btn-clear {
-            background-color: #6c757d;
-        }
-        
-        .btn-clear:hover {
-            background-color: #5a6268;
-        }
-        
-        .results {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-            text-align: left;
-        }
-        
-        .error {
-            color: #dc3545;
-            font-weight: bold;
-        }
-        
-        /* Extra Credit specific styles */
-        .currency-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        .currency-table th, .currency-table td {
-            border: 1px solid #dee2e6;
-            padding: 10px;
-            text-align: left;
-        }
-        
-        .currency-table th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-        
-        .currency-table input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        
-        .currency-table input[type="text"]:focus {
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-        }
-        
-        .value-cell {
-            text-align: right;
-            font-family: monospace;
-        }
-        
-        .usd-input {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
+        .nav-links {
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Homework 2 - Basic Operations</h1>
+    <main>
+        <header>
+            <h1>Homework 2 - Basic Operations</h1>
+        </header>
         
-        <a href="hw2-p1.html" class="part-link">
-            <span class="part-title">Part 1: Styled Text Output</span>
-            <span class="part-desc">Display formatted text with specific styling requirements using JavaScript</span>
-        </a>
+        <section class="part-links">
+            <h2 class="sr-only">Homework 2 Parts</h2>
+            <a href="hw2-p1.html" class="part-link">
+                <span class="part-title">Part 1: Styled Text Output</span>
+                <span class="part-desc">Display formatted text with specific styling requirements using JavaScript</span>
+            </a>
+            
+            <a href="hw2-p2.html" class="part-link">
+                <span class="part-title">Part 2: Number Calculations</span>
+                <span class="part-desc">Calculate sum, average, product, min and max of three numbers with validation</span>
+            </a>
+            
+            <a href="hw2-ec.html" class="part-link">
+                <span class="part-title">Extra Credit: Currency Converter</span>
+                <span class="part-desc">Convert US Dollars to various currencies with real exchange rates</span>
+            </a>
+        </section>
         
-        <a href="hw2-p2.html" class="part-link">
-            <span class="part-title">Part 2: Number Calculations</span>
-            <span class="part-desc">Calculate sum, average, product, min and max of three numbers with validation</span>
-        </a>
-        
-        <a href="hw2-ec.html" class="part-link">
-            <span class="part-title">Extra Credit: Currency Converter</span>
-            <span class="part-desc">Convert US Dollars to various currencies with real exchange rates</span>
-        </a>
-        
-        <a href="hw1.html" class="back-link">Back to Assignments</a>
-    </div>
+        <nav class="nav-links">
+            <a href="hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
 </body>
 </html>

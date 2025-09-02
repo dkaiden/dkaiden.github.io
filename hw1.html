@@ -15,7 +15,7 @@
             background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
         }
         
-        .container {
+        main {
             max-width: 800px;
             margin: 0 auto;
             background-color: white;
@@ -54,22 +54,35 @@
             color: #7f8c8d;
             font-style: italic;
         }
+        
+        .assignment-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .assignment-item {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
-    <main class="container">
-        <h1>CIS 114 Assignments</h1>
+    <main>
+        <header>
+            <h1>CIS 114 Assignments</h1>
+        </header>
         
-        <nav class="assignments">
+        <section class="assignments">
             <h2>Homework Assignments</h2>
-            <p><a href="hw2.html" class="assignment-link">Homework 2 - Basic Operations</a></p>
-            <p><a href="#" class="assignment-link">Homework 3</a> <span class="coming-soon">(Coming soon)</span></p>
-            <p><a href="#" class="assignment-link">Homework 4</a> <span class="coming-soon">(Coming soon)</span></p>
-            <p><a href="#" class="assignment-link">Homework 5</a> <span class="coming-soon">(Coming soon)</span></p>
-            <p><a href="#" class="assignment-link">Homework 6</a> <span class="coming-soon">(Coming soon)</span></p>
-            <p><a href="#" class="assignment-link">Homework 7</a> <span class="coming-soon">(Coming soon)</span></p>
-            <p><a href="#" class="assignment-link">Homework 8</a> <span class="coming-soon">(Coming soon)</span></p>
-        </nav>
+            <ul class="assignment-list">
+                <li class="assignment-item"><a href="hw2.html" class="assignment-link">Homework 2 - Basic Operations</a></li>
+                <li class="assignment-item"><a href="#" class="assignment-link">Homework 3</a> <span class="coming-soon">(Coming soon)</span></li>
+                <li class="assignment-item"><a href="#" class="assignment-link">Homework 4</a> <span class="coming-soon">(Coming soon)</span></li>
+                <li class="assignment-item"><a href="#" class="assignment-link">Homework 5</a> <span class="coming-soon">(Coming soon)</span></li>
+                <li class="assignment-item"><a href="#" class="assignment-link">Homework 6</a> <span class="coming-soon">(Coming soon)</span></li>
+                <li class="assignment-item"><a href="#" class="assignment-link">Homework 7</a> <span class="coming-soon">(Coming soon)</span></li>
+                <li class="assignment-item"><a href="#" class="assignment-link">Homework 8</a> <span class="coming-soon">(Coming soon)</span></li>
+            </ul>
+        </section>
     </main>
 </body>
 </html>

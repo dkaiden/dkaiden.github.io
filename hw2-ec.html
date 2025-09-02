@@ -15,7 +15,7 @@
             background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
         }
         
-        .container {
+        main {
             max-width: 800px;
             margin: 0 auto;
             background-color: white;
@@ -88,11 +88,17 @@
             background-color: #f8f9fa;
             border-radius: 4px;
         }
+        
+        .nav-links {
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Homework 2 - Extra Credit: Currency Converter</h1>
+    <main>
+        <header>
+            <h1>Homework 2 - Extra Credit: Currency Converter</h1>
+        </header>
         
         <p>Enter an amount in U.S. Dollars to convert to other currencies:</p>
         
@@ -133,16 +139,16 @@
             </tbody>
         </table>
         
-        <div class="usd-input">
+        <section class="usd-input">
             <label for="usd">Enter Amount of U.S. Dollars:</label>
             <input type="number" id="usd" placeholder="Enter amount" step="0.01" oninput="convertCurrency()">
-        </div>
+        </section>
         
-        <div style="margin-top: 30px;">
+        <nav class="nav-links">
             <a href="hw2.html" class="back-link">Back to Homework 2 Main Page</a>
             <a href="hw1.html" class="back-link">Back to Assignments</a>
-        </div>
-    </div>
+        </nav>
+    </main>
 
     <script>
         function convertCurrency() {

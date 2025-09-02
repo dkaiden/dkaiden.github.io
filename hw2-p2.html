@@ -15,7 +15,7 @@
             background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
         }
         
-        .container {
+        main {
             max-width: 800px;
             margin: 0 auto;
             background-color: white;
@@ -105,13 +105,17 @@
             color: #dc3545;
             font-weight: bold;
         }
+        
+        .button-group {
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <main>
         <h1>Homework 2 - Part 2: Number Calculations</h1>
         
-        <div class="input-form">
+        <form class="input-form">
             <div class="form-group">
                 <label for="num1">First Number:</label>
                 <input type="number" id="num1" placeholder="Enter a number">
@@ -131,18 +135,18 @@
                 <button class="btn" onclick="calculate()">Calculate</button>
                 <button class="btn btn-clear" onclick="clearForm()">Clear</button>
             </div>
-        </div>
+        </form>
         
-        <div id="results" class="results" style="display: none;">
+        <section id="results" class="results" style="display: none;">
             <h3>Results:</h3>
             <div id="result-content"></div>
-        </div>
+        </section>
         
-        <div style="margin-top: 30px;">
+        <nav class="button-group">
             <a href="hw2.html" class="back-link">Back to Homework 2 Main Page</a>
             <a href="hw1.html" class="back-link">Back to Assignments</a>
-        </div>
-    </div>
+        </nav>
+    </main>
 
     <script>
         function calculate() {
