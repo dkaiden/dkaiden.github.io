@@ -63,12 +63,20 @@
             font-weight: bold;
         }
         
+        .currency-table th:nth-child(3),
+        .currency-table td:nth-child(3) {
+            text-align: right;
+        }
+        
         .currency-table input[type="text"] {
             width: 100%;
             padding: 8px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             box-sizing: border-box;
+            text-align: right;
+            font-family: monospace;
+            background-color: #f8f9fa;
         }
         
         .currency-table input[type="text"]:focus {
@@ -79,7 +87,6 @@
         
         .value-cell {
             text-align: right;
-            font-family: monospace;
         }
         
         .usd-input {
@@ -87,6 +94,22 @@
             padding: 15px;
             background-color: #f8f9fa;
             border-radius: 4px;
+        }
+        
+        .usd-input input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            text-align: right;
+            font-family: monospace;
+        }
+        
+        /* Focus style for the USD input */
+        .usd-input input:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            background-color: #fff;
         }
         
         .nav-links {

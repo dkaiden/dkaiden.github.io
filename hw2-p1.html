@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Homework 2 Part 1 - Styled Text Output">
+    <meta name="description" content="Homework 2 Part 1 - Styled Text Output with JavaScript">
     <title>Homework 2 - Part 1 | Web Programming Assignments</title>
     <style>
         body {
@@ -52,23 +52,7 @@
             padding: 15px;
             background-color: #f8f9fa;
             border-radius: 5px;
-        }
-        
-        .xy {
-            font-weight: bold;
-            font-family: 'Times New Roman', serif;
-            color: red;
-        }
-        
-        .twelve {
-            color: blue;
-            font-family: Arial, sans-serif;
-        }
-        
-        .eightynine {
-            color: green;
-            font-style: italic;
-            font-family: Impact, Charcoal, sans-serif;
+            min-height: 30px;
         }
         
         .description-list {
@@ -85,16 +69,14 @@
 <body>
     <main>
         <header>
-            <h1>Homework 2 - Part 1: Styled Text Output</h1>
+            <h1>Homework 2 - Part 1: Styled Text Output with JavaScript</h1>
         </header>
         
-        <div class="styled-output">
-            <span class="xy">xy</span>
-            <span class="twelve">12</span>
-            <span class="eightynine">89</span>
+        <div id="styled-output" class="styled-output">
+            <!-- JavaScript will populate this area -->
         </div>
         
-        <p>This output displays:</p>
+        <p>This output is generated using JavaScript and displays:</p>
         <ul class="description-list">
             <li>"xy" in <strong>bold</strong>, Times New Roman font, and <span style="color: red;">red color</span></li>
             <li>"12" in <span style="color: blue;">blue color</span> and Arial font</li>
@@ -106,5 +88,44 @@
             <a href="hw1.html" class="back-link">Back to Assignments</a>
         </nav>
     </main>
+
+    <script>
+        // JavaScript implementation
+        document.addEventListener('DOMContentLoaded', function() {
+            const outputDiv = document.getElementById('styled-output');
+            
+            // Clear any existing content
+            outputDiv.innerHTML = '';
+            
+            // Create and style the 'xy' element
+            const xyElement = document.createElement('span');
+            xyElement.textContent = 'xy';
+            xyElement.style.fontWeight = 'bold';
+            xyElement.style.fontFamily = 'Times New Roman, serif';
+            xyElement.style.color = 'red';
+            outputDiv.appendChild(xyElement);
+            
+            // Add a space
+            outputDiv.appendChild(document.createTextNode(' '));
+            
+            // Create and style the '12' element
+            const twelveElement = document.createElement('span');
+            twelveElement.textContent = '12';
+            twelveElement.style.color = 'blue';
+            twelveElement.style.fontFamily = 'Arial, sans-serif';
+            outputDiv.appendChild(twelveElement);
+            
+            // Add a space
+            outputDiv.appendChild(document.createTextNode(' '));
+            
+            // Create and style the '89' element
+            const eightynineElement = document.createElement('span');
+            eightynineElement.textContent = '89';
+            eightynineElement.style.color = 'green';
+            eightynineElement.style.fontStyle = 'italic';
+            eightynineElement.style.fontFamily = 'Impact, Charcoal, sans-serif';
+            outputDiv.appendChild(eightynineElement);
+        });
+    </script>
 </body>
 </html>
