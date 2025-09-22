@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 3 Part 1 - Student Grades Calculator">
+    <title>Homework 3 - Part 1 | Web Programming Assignments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .input-form {
+            margin: 20px auto;
+            max-width: 500px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-clear {
+            background-color: #6c757d;
+        }
+        
+        .btn-clear:hover {
+            background-color: #5a6268;
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .warning {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .nav-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Homework 3 - Part 1: Student Grades</h1>
+        </header>
+        
+        <form id="grade-form" class="input-form">
+            <div class="form-group">
+                <label for="hwAvg">Homework Average (0-100):</label>
+                <input type="number" id="hwAvg" min="0" max="100" placeholder="Enter homework average">
+            </div>
+            
+            <div class="form-group">
+                <label for="midExam">Mid-Term Exam Score (0-100):</label>
+                <input type="number" id="midExam" min="0" max="100" placeholder="Enter mid-term score">
+            </div>
+            
+            <div class="form-group">
+                <label for="finalExam">Final Exam Score (0-100):</label>
+                <input type="number" id="finalExam" min="0" max="100" placeholder="Enter final exam score">
+            </div>
+            
+            <div class="form-group">
+                <label for="participation">Participation (0-100):</label>
+                <input type="number" id="participation" min="0" max="100" placeholder="Enter participation score">
+            </div>
+            
+            <div class="button-group">
+                <input type="submit" class="btn" value="Calculate Grade">
+                <input type="button" class="btn btn-clear" value="Clear Form" onclick="clearForm()">
+            </div>
+        </form>
+        
+        <section id="results" class="results" style="display: none;">
+            <h3>Results:</h3>
+            <div id="result-content"></div>
+        </section>
+        
+        <nav class="nav-links">
+            <a href="hw3.html" class="back-link">Back to Homework 3</a>
+            <a href="hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        // Add event listener to the form
+        document.getElementById('grade-form').addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            calculateGrade();
+        });
+        
+        function calculateGrade() {
+            // Get input values
+            const hwAvg = document.getElementById('hwAvg').value;
+            const midExam = document.getElementById('midExam').value;
+            const finalExam = document.getElementById('finalExam').value;
+            const participation = document.getElementById('participation').value;
+            
+            // Validate inputs
+            if (hwAvg === '' || midExam === '' || finalExam === '' || participation === '') {
+                showError('Please enter all four values.');
+                return;
+            }
+            
+            if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(participation)) {
+                showError('Please enter valid numbers.');
+                return;
+            }
+            
+            // Convert to numbers
+            const hw = parseFloat(hwAvg);
+            const mid = parseFloat(midExam);
+            const final = parseFloat(finalExam);
+            const part = parseFloat(participation);
+            
+            // Check if values are within range
+            if (hw < 0 || hw > 100 || mid < 0 || mid > 100 || 
+                final < 0 || final > 100 || part < 0 || part > 100) {
+                showError('All values must be between 0 and 100.');
+                return;
+            }
+            
+            // Calculate final average
+            const finalAverage = (0.5 * hw) + (0.2 * mid) + (0.2 * final) + (0.1 * part);
+            const roundedAverage = Math.round(finalAverage);
+            
+            // Determine letter grade
+            let letterGrade, message;
+            
+            if (roundedAverage >= 90) {
+                letterGrade = 'A';
+                message = '';
+            } else if (roundedAverage >= 80) {
+                letterGrade = 'B';
+                message = '';
+            } else if (roundedAverage >= 70) {
+                letterGrade = 'C';
+                message = '';
+            } else if (roundedAverage >= 60) {
+                letterGrade = 'D';
+                message = 'Student must retake the course.';
+            } else {
+                letterGrade = 'F';
+                message = 'Student must retake the course.';
+            }
+            
+            // Display results
+            let resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <p>Final Average: <strong>${roundedAverage}%</strong></p>
+                <p>Letter Grade: <strong>${letterGrade}</strong></p>
+                ${message ? `<p class="warning">${message}</p>` : ''}
+            `;
+            
+            document.getElementById('results').style.display = 'block';
+        }
+        
+        function clearForm() {
+            document.getElementById('hwAvg').value = '';
+            document.getElementById('midExam').value = '';
+            document.getElementById('finalExam').value = '';
+            document.getElementById('participation').value = '';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        function showError(message) {
+            let resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `<p class="error">${message}</p>`;
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

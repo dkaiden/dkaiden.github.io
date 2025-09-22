@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 3 Part 2 - Sales Commission Calculator">
+    <title>Homework 3 - Part 2 | Web Programming Assignments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
+        }
+        
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .sales-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .sales-table th, .sales-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .sales-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .sales-table input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            text-align: right;
+        }
+        
+        .sales-table input[readonly] {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+        
+        .right-align {
+            text-align: right;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-clear {
+            background-color: #6c757d;
+        }
+        
+        .btn-clear:hover {
+            background-color: #5a6268;
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .nav-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .item-total, .summary-value {
+            font-family: monospace;
+            text-align: right;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Homework 3 - Part 2: Sales Commission Calculator</h1>
+        </header>
+        
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Value</th>
+                    <th>Quantity Sold</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>$20.99</td>
+                    <td><input type="number" id="qty1" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td class="item-total"><input type="text" id="total1" readonly></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>$12.75</td>
+                    <td><input type="number" id="qty2" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td class="item-total"><input type="text" id="total2" readonly></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>$9.95</td>
+                    <td><input type="number" id="qty3" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td class="item-total"><input type="text" id="total3" readonly></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>$35.89</td>
+                    <td><input type="number" id="qty4" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td class="item-total"><input type="text" id="total4" readonly></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="right-align"><strong>Total Amount Sold:</strong></td>
+                    <td class="summary-value"><input type="text" id="totalSold" readonly></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="right-align"><strong>Commission (9% of Total):</strong></td>
+                    <td class="summary-value"><input type="text" id="commission" readonly></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="right-align"><strong>Base Salary:</strong></td>
+                    <td class="summary-value"><input type="text" id="baseSalary" value="$250.00" readonly></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="right-align"><strong>Total Weekly Earnings:</strong></td>
+                    <td class="summary-value"><input type="text" id="totalEarnings" readonly></td>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <div class="button-group">
+            <input type="button" class="btn" value="Calculate" onclick="calculateSales()">
+            <input type="button" class="btn btn-clear" value="Clear" onclick="clearForm()">
+        </div>
+        
+        <section id="error-message" class="results" style="display: none;">
+            <div id="error-content" class="error"></div>
+        </section>
+        
+        <nav class="nav-links">
+            <a href="hw3.html" class="back-link">Back to Homework 3</a>
+            <a href="hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        // Item prices
+        const prices = {
+            item1: 20.99,
+            item2: 12.75,
+            item3: 9.95,
+            item4: 35.89
+        };
+        
+        function calculateSales() {
+            // Hide error message initially
+            document.getElementById('error-message').style.display = 'none';
+            
+            // Get quantity values
+            const qty1 = document.getElementById('qty1').value;
+            const qty2 = document.getElementById('qty2').value;
+            const qty3 = document.getElementById('qty3').value;
+            const qty4 = document.getElementById('qty4').value;
+            
+            // Check if all inputs are valid numbers and non-negative
+            if (isNaN(qty1) || qty1 < 0 || isNaN(qty2) || qty2 < 0 || 
+                isNaN(qty3) || qty3 < 0 || isNaN(qty4) || qty4 < 0) {
+                showError('Please enter valid, non-negative numbers for all quantities.');
+                return;
+            }
+            
+            // Convert to numbers
+            const q1 = parseFloat(qty1) || 0;
+            const q2 = parseFloat(qty2) || 0;
+            const q3 = parseFloat(qty3) || 0;
+            const q4 = parseFloat(qty4) || 0;
+            
+            // Calculate item totals
+            const total1 = q1 * prices.item1;
+            const total2 = q2 * prices.item2;
+            const total3 = q3 * prices.item3;
+            const total4 = q4 * prices.item4;
+            
+            // Display item totals
+            document.getElementById('total1').value = formatCurrency(total1);
+            document.getElementById('total2').value = formatCurrency(total2);
+            document.getElementById('total3').value = formatCurrency(total3);
+            document.getElementById('total4').value = formatCurrency(total4);
+            
+            // Calculate total sold
+            const totalSold = total1 + total2 + total3 + total4;
+            document.getElementById('totalSold').value = formatCurrency(totalSold);
+            
+            // Calculate commission (9% of total sold)
+            const commission = totalSold * 0.09;
+            document.getElementById('commission').value = formatCurrency(commission);
+            
+            // Calculate total earnings (base salary + commission)
+            const baseSalary = 250;
+            const totalEarnings = baseSalary + commission;
+            document.getElementById('totalEarnings').value = formatCurrency(totalEarnings);
+        }
+        
+        function formatCurrency(amount) {
+            return '$' + amount.toFixed(2);
+        }
+        
+        function clearForm() {
+            document.getElementById('qty1').value = '';
+            document.getElementById('qty2').value = '';
+            document.getElementById('qty3').value = '';
+            document.getElementById('qty4').value = '';
+            
+            document.getElementById('total1').value = '';
+            document.getElementById('total2').value = '';
+            document.getElementById('total3').value = '';
+            document.getElementById('total4').value = '';
+            
+            document.getElementById('totalSold').value = '';
+            document.getElementById('commission').value = '';
+            document.getElementById('totalEarnings').value = '';
+            
+            document.getElementById('error-message').style.display = 'none';
+        }
+        
+        function showError(message) {
+            let errorContent = document.getElementById('error-content');
+            errorContent.innerHTML = message;
+            document.getElementById('error-message').style.display = 'block';
+            
+            // Clear all result fields
+            document.getElementById('total1').value = '';
+            document.getElementById('total2').value = '';
+            document.getElementById('total3').value = '';
+            document.getElementById('total4').value = '';
+            
+            document.getElementById('totalSold').value = '';
+            document.getElementById('commission').value = '';
+            document.getElementById('totalEarnings').value = '';
+        }
+    </script>
+</body>
+</html>
