@@ -49,24 +49,41 @@
         .input-form {
             margin: 20px auto;
             max-width: 500px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
+            color: #2c3e50;
         }
         
         input[type="number"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .weight-info {
+            font-size: 14px;
+            color: #6c757d;
+            margin-top: 5px;
         }
         
         .btn {
@@ -78,6 +95,7 @@
             cursor: pointer;
             margin-right: 10px;
             transition: background-color 0.3s;
+            font-size: 16px;
         }
         
         .btn:hover {
@@ -98,6 +116,9 @@
             background-color: #f8f9fa;
             border-radius: 4px;
             text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .error {
@@ -113,6 +134,10 @@
         .warning {
             color: #ffc107;
             font-weight: bold;
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
         }
         
         .button-group {
@@ -124,6 +149,36 @@
             margin-top: 30px;
             text-align: center;
         }
+        
+        .grade-display {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .grade-item {
+            text-align: center;
+        }
+        
+        .grade-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .letter-grade {
+            font-size: 32px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: white;
+        }
+        
+        .grade-a { background-color: #28a745; }
+        .grade-b { background-color: #20c997; }
+        .grade-c { background-color: #ffc107; }
+        .grade-d { background-color: #fd7e14; }
+        .grade-f { background-color: #dc3545; }
     </style>
 </head>
 <body>
@@ -135,22 +190,26 @@
         <form id="grade-form" class="input-form">
             <div class="form-group">
                 <label for="hwAvg">Homework Average (0-100):</label>
-                <input type="number" id="hwAvg" min="0" max="100" placeholder="Enter homework average">
+                <input type="number" id="hwAvg" min="0" max="100" placeholder="Enter homework average" required>
+                <div class="weight-info">Weight: 50% of final grade</div>
             </div>
             
             <div class="form-group">
                 <label for="midExam">Mid-Term Exam Score (0-100):</label>
-                <input type="number" id="midExam" min="0" max="100" placeholder="Enter mid-term score">
+                <input type="number" id="midExam" min="0" max="100" placeholder="Enter mid-term score" required>
+                <div class="weight-info">Weight: 20% of final grade</div>
             </div>
             
             <div class="form-group">
                 <label for="finalExam">Final Exam Score (0-100):</label>
-                <input type="number" id="finalExam" min="0" max="100" placeholder="Enter final exam score">
+                <input type="number" id="finalExam" min="0" max="100" placeholder="Enter final exam score" required>
+                <div class="weight-info">Weight: 20% of final grade</div>
             </div>
             
             <div class="form-group">
                 <label for="participation">Participation (0-100):</label>
-                <input type="number" id="participation" min="0" max="100" placeholder="Enter participation score">
+                <input type="number" id="participation" min="0" max="100" placeholder="Enter participation score" required>
+                <div class="weight-info">Weight: 10% of final grade</div>
             </div>
             
             <div class="button-group">
@@ -160,7 +219,7 @@
         </form>
         
         <section id="results" class="results" style="display: none;">
-            <h3>Results:</h3>
+            <h3>Grade Results</h3>
             <div id="result-content"></div>
         </section>
         
@@ -214,31 +273,44 @@
             const roundedAverage = Math.round(finalAverage);
             
             // Determine letter grade
-            let letterGrade, message;
+            let letterGrade, gradeClass, message;
             
             if (roundedAverage >= 90) {
                 letterGrade = 'A';
+                gradeClass = 'grade-a';
                 message = '';
             } else if (roundedAverage >= 80) {
                 letterGrade = 'B';
+                gradeClass = 'grade-b';
                 message = '';
             } else if (roundedAverage >= 70) {
                 letterGrade = 'C';
+                gradeClass = 'grade-c';
                 message = '';
             } else if (roundedAverage >= 60) {
                 letterGrade = 'D';
+                gradeClass = 'grade-d';
                 message = 'Student must retake the course.';
             } else {
                 letterGrade = 'F';
+                gradeClass = 'grade-f';
                 message = 'Student must retake the course.';
             }
             
             // Display results
             let resultContent = document.getElementById('result-content');
             resultContent.innerHTML = `
-                <p>Final Average: <strong>${roundedAverage}%</strong></p>
-                <p>Letter Grade: <strong>${letterGrade}</strong></p>
-                ${message ? `<p class="warning">${message}</p>` : ''}
+                <div class="grade-display">
+                    <div class="grade-item">
+                        <div>Final Average</div>
+                        <div class="grade-value">${roundedAverage}%</div>
+                    </div>
+                    <div class="grade-item">
+                        <div>Letter Grade</div>
+                        <div class="letter-grade ${gradeClass}">${letterGrade}</div>
+                    </div>
+                </div>
+                ${message ? `<div class="warning">${message}</div>` : ''}
             `;
             
             document.getElementById('results').style.display = 'block';
