@@ -68,12 +68,14 @@
             padding: 5px;
             border: 1px solid #ced4da;
             border-radius: 4px;
-            text-align: right;
+            text-align: center;
         }
         
         .sales-table input[readonly] {
             background-color: #f8f9fa;
             border: 1px solid #e9ecef;
+            text-align: right;
+            padding-right: 10px;
         }
         
         .right-align {
@@ -130,6 +132,32 @@
             text-align: right;
             padding-right: 10px;
         }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: inline-block;
+            width: 150px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        
+        .input-group input {
+            width: 100px;
+            padding: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -138,38 +166,70 @@
             <h1>Homework 3 - Part 2: Sales Commission Calculator</h1>
         </header>
         
+        <div class="input-group">
+            <label for="sellerName">Seller's Name:</label>
+            <input type="text" id="sellerName" placeholder="Enter name">
+        </div>
+        
+        <div class="section-title">For each item type the quantity sold by the seller</div>
+        
+        <div class="input-group">
+            <label for="qty1">Item 1:</label>
+            <input type="number" id="qty1" min="0" placeholder="0">
+        </div>
+        
+        <div class="input-group">
+            <label for="qty2">Item 2:</label>
+            <input type="number" id="qty2" min="0" placeholder="0">
+        </div>
+        
+        <div class="input-group">
+            <label for="qty3">Item 3:</label>
+            <input type="number" id="qty3" min="0" placeholder="0">
+        </div>
+        
+        <div class="input-group">
+            <label for="qty4">Item 4:</label>
+            <input type="number" id="qty4" min="0" placeholder="0">
+        </div>
+        
+        <div class="button-group">
+            <input type="button" class="btn" value="Submit" onclick="calculateSales()">
+            <input type="button" class="btn btn-clear" value="Clear Form" onclick="clearForm()">
+        </div>
+        
         <table class="sales-table">
             <thead>
                 <tr>
-                    <th>Item</th>
-                    <th>Value</th>
-                    <th>Quantity Sold</th>
-                    <th>Total</th>
+                    <th>Item #</th>
+                    <th>Price</th>
+                    <th>Qty Sold</th>
+                    <th>Total $</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
                     <td>$20.99</td>
-                    <td><input type="number" id="qty1" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td><input type="text" id="displayQty1" readonly></td>
                     <td class="item-total"><input type="text" id="total1" readonly></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>$12.75</td>
-                    <td><input type="number" id="qty2" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td><input type="text" id="displayQty2" readonly></td>
                     <td class="item-total"><input type="text" id="total2" readonly></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>$9.95</td>
-                    <td><input type="number" id="qty3" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td><input type="text" id="displayQty3" readonly></td>
                     <td class="item-total"><input type="text" id="total3" readonly></td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>$35.89</td>
-                    <td><input type="number" id="qty4" min="0" placeholder="0" oninput="calculateSales()"></td>
+                    <td><input type="text" id="displayQty4" readonly></td>
                     <td class="item-total"><input type="text" id="total4" readonly></td>
                 </tr>
             </tbody>
@@ -192,11 +252,6 @@
                 </tr>
             </tfoot>
         </table>
-        
-        <div class="button-group">
-            <input type="button" class="btn" value="Calculate" onclick="calculateSales()">
-            <input type="button" class="btn btn-clear" value="Clear" onclick="clearForm()">
-        </div>
         
         <section id="error-message" class="results" style="display: none;">
             <div id="error-content" class="error"></div>
@@ -240,6 +295,12 @@
             const q3 = parseFloat(qty3) || 0;
             const q4 = parseFloat(qty4) || 0;
             
+            // Display quantities in the table
+            document.getElementById('displayQty1').value = q1;
+            document.getElementById('displayQty2').value = q2;
+            document.getElementById('displayQty3').value = q3;
+            document.getElementById('displayQty4').value = q4;
+            
             // Calculate item totals
             const total1 = q1 * prices.item1;
             const total2 = q2 * prices.item2;
@@ -271,10 +332,16 @@
         }
         
         function clearForm() {
+            document.getElementById('sellerName').value = '';
             document.getElementById('qty1').value = '';
             document.getElementById('qty2').value = '';
             document.getElementById('qty3').value = '';
             document.getElementById('qty4').value = '';
+            
+            document.getElementById('displayQty1').value = '';
+            document.getElementById('displayQty2').value = '';
+            document.getElementById('displayQty3').value = '';
+            document.getElementById('displayQty4').value = '';
             
             document.getElementById('total1').value = '';
             document.getElementById('total2').value = '';
@@ -294,6 +361,11 @@
             document.getElementById('error-message').style.display = 'block';
             
             // Clear all result fields
+            document.getElementById('displayQty1').value = '';
+            document.getElementById('displayQty2').value = '';
+            document.getElementById('displayQty3').value = '';
+            document.getElementById('displayQty4').value = '';
+            
             document.getElementById('total1').value = '';
             document.getElementById('total2').value = '';
             document.getElementById('total3').value = '';

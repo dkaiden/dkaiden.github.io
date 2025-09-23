@@ -58,17 +58,29 @@
             margin-bottom: 20px;
         }
         
-        .answer-input {
-            padding: 10px;
+        .input-group {
+            margin: 20px 0;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
             font-size: 18px;
-            width: 100px;
+            font-weight: bold;
+        }
+        
+        .answer-input {
+            padding: 12px;
+            font-size: 18px;
+            width: 150px;
             text-align: center;
             border: 2px solid #3498db;
             border-radius: 4px;
+            margin-bottom: 15px;
         }
         
         .btn {
-            padding: 10px 15px;
+            padding: 12px 20px;
             background-color: #3498db;
             color: white;
             border: none;
@@ -76,6 +88,7 @@
             cursor: pointer;
             margin: 10px 5px;
             transition: background-color 0.3s;
+            font-size: 16px;
         }
         
         .btn:hover {
@@ -103,6 +116,7 @@
             padding: 15px;
             border-radius: 4px;
             font-weight: bold;
+            font-size: 18px;
         }
         
         .good {
@@ -124,6 +138,11 @@
             margin-top: 20px;
         }
         
+        .decision-buttons p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
         .nav-links {
             margin-top: 30px;
         }
@@ -138,8 +157,10 @@
         <section class="game-area">
             <div id="question" class="question">How much is X times Y?</div>
             
-            <div>
-                <input type="number" id="answer" class="answer-input" placeholder="Your answer">
+            <div class="input-group">
+                <label for="answer" class="input-label">Your Answer:</label>
+                <input type="number" id="answer" class="answer-input" placeholder="Enter answer">
+                <br>
                 <button id="check-btn" class="btn" onclick="checkAnswer()">Check Answer</button>
             </div>
             
@@ -177,6 +198,10 @@
             document.getElementById('answer').value = '';
             document.getElementById('feedback').style.display = 'none';
             document.getElementById('decision-buttons').style.display = 'none';
+            
+            // Show answer input and check button if they were hidden
+            document.getElementById('answer').style.display = 'inline-block';
+            document.getElementById('check-btn').style.display = 'inline-block';
             
             // Focus on answer input
             document.getElementById('answer').focus();
