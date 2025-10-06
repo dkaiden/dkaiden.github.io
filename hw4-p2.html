@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 4 Part 2 - Multiplication Tables">
+    <title>Homework 4 - Part 2 | Web Programming Assignments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .multiplication-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .multiplication-table th, .multiplication-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .multiplication-table th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .multiplication-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .multiplication-table tr:nth-child(odd) {
+            background-color: white;
+        }
+        
+        .table-container {
+            margin-bottom: 30px;
+        }
+        
+        .nav-links {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Homework 4 - Part 2: Multiplication Tables</h1>
+        </header>
+        
+        <h2>Learn Multiplication</h2>
+        
+        <div id="tables-container">
+            <!-- JavaScript will populate this area with multiplication tables -->
+        </div>
+        
+        <nav class="nav-links">
+            <a href="hw4.html" class="back-link">Back to Homework 4 Main Page</a>
+            <a href="hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('tables-container');
+            
+            // Outer loop for multipliers from 5 to 9
+            for (let multiplier = 5; multiplier <= 9; multiplier++) {
+                const tableContainer = document.createElement('div');
+                tableContainer.className = 'table-container';
+                
+                const table = document.createElement('table');
+                table.className = 'multiplication-table';
+                
+                // Create table header
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                
+                const numberHeader = document.createElement('th');
+                numberHeader.textContent = 'Number';
+                headerRow.appendChild(numberHeader);
+                
+                const multiplierHeader = document.createElement('th');
+                multiplierHeader.textContent = 'Multiplier';
+                headerRow.appendChild(multiplierHeader);
+                
+                const resultHeader = document.createElement('th');
+                resultHeader.textContent = 'Result';
+                headerRow.appendChild(resultHeader);
+                
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+                
+                // Create table body
+                const tbody = document.createElement('tbody');
+                
+                // Inner loop for numbers from 1 to 9
+                for (let number = 1; number <= 9; number++) {
+                    const row = document.createElement('tr');
+                    
+                    const numberCell = document.createElement('td');
+                    numberCell.textContent = number;
+                    row.appendChild(numberCell);
+                    
+                    const multiplierCell = document.createElement('td');
+                    multiplierCell.textContent = multiplier;
+                    row.appendChild(multiplierCell);
+                    
+                    const resultCell = document.createElement('td');
+                    resultCell.textContent = number * multiplier;
+                    row.appendChild(resultCell);
+                    
+                    tbody.appendChild(row);
+                }
+                
+                table.appendChild(tbody);
+                tableContainer.appendChild(table);
+                container.appendChild(tableContainer);
+            }
+        });
+    </script>
+</body>
+</html>

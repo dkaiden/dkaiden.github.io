@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 4 Part 1 - Loop Calculations">
+    <title>Homework 4 - Part 1 | Web Programming Assignments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .results {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: left;
+        }
+        
+        .nav-links {
+            margin-top: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Homework 4 - Part 1: Loop Calculations</h1>
+        </header>
+        
+        <section class="section">
+            <h2>For Loop: Every Fourth Integer from 5 to 25</h2>
+            <div id="for-loop-results" class="results">
+                <!-- JavaScript will populate this area -->
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>While Loop: Every Third Integer from 3 to 18</h2>
+            <div id="while-loop-results" class="results">
+                <!-- JavaScript will populate this area -->
+            </div>
+        </section>
+        
+        <nav class="nav-links">
+            <a href="hw4.html" class="back-link">Back to Homework 4 Main Page</a>
+            <a href="hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // For loop: every fourth integer from 5 to 25
+            let forProduct = 1;
+            let forSum = 0;
+            let forNumbers = [];
+            
+            for (let i = 5; i <= 25; i += 4) {
+                forProduct *= i;
+                forSum += i;
+                forNumbers.push(i);
+            }
+            
+            const forLoopResults = document.getElementById('for-loop-results');
+            forLoopResults.innerHTML = `
+                <p>The result of ${forNumbers.join(' * ')} is <strong>${forProduct.toLocaleString()}</strong></p>
+                <p>The result of ${forNumbers.join(' + ')} is <strong>${forSum.toLocaleString()}</strong></p>
+            `;
+            
+            // While loop: every third integer from 3 to 18
+            let whileProduct = 1;
+            let whileSum = 0;
+            let whileNumbers = [];
+            let j = 3;
+            
+            while (j <= 18) {
+                whileProduct *= j;
+                whileSum += j;
+                whileNumbers.push(j);
+                j += 3;
+            }
+            
+            const whileLoopResults = document.getElementById('while-loop-results');
+            whileLoopResults.innerHTML = `
+                <p>The result of ${whileNumbers.join(' * ')} is <strong>${whileProduct.toLocaleString()}</strong></p>
+                <p>The result of ${whileNumbers.join(' + ')} is <strong>${whileSum.toLocaleString()}</strong></p>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 4 Extra Credit - Hollow Square">
+    <title>Homework 4 - Extra Credit | Web Programming Assignments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #87CEFA, #87CEEB);
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+        
+        .input-form {
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-clear {
+            background-color: #6c757d;
+        }
+        
+        .btn-clear:hover {
+            background-color: #5a6268;
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            text-align: center;
+            font-family: monospace;
+            white-space: pre;
+            line-height: 1.2;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Homework 4 - Extra Credit: Hollow Square</h1>
+        
+        <form id="square-form" class="input-form">
+            <div class="form-group">
+                <label for="size">Enter a number between 2 and 10:</label>
+                <input type="number" id="size" placeholder="Enter a number (2-10)" min="2" max="10">
+            </div>
+            
+            <div>
+                <input type="button" class="btn" value="Create Square" onclick="createSquare()">
+                <input type="button" class="btn btn-clear" value="Clear" onclick="clearForm()">
+            </div>
+        </form>
+        
+        <section id="results" class="results" style="display: none;">
+            <!-- JavaScript will populate this area -->
+        </section>
+        
+        <nav class="button-group">
+            <a href="hw4.html" class="back-link">Back to Homework 4 Main Page</a>
+            <a href="hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        function createSquare() {
+            const sizeInput = document.getElementById('size').value;
+            const resultsDiv = document.getElementById('results');
+            
+            // Validate input
+            if (sizeInput === '' || isNaN(sizeInput)) {
+                showError('Please enter a valid number.');
+                return;
+            }
+            
+            const size = parseInt(sizeInput);
+            
+            if (size < 2 || size > 10) {
+                showError('Please enter a number between 2 and 10.');
+                return;
+            }
+            
+            // Create hollow square
+            let square = '';
+            
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    // Top and bottom rows, or left and right columns
+                    if (row === 0 || row === size - 1 || col === 0 || col === size - 1) {
+                        square += '* ';
+                    } else {
+                        square += '  '; // Two spaces to maintain alignment
+                    }
+                }
+                square += '\n'; // New line after each row
+            }
+            
+            resultsDiv.textContent = square;
+            resultsDiv.style.display = 'block';
+        }
+        
+        function clearForm() {
+            document.getElementById('size').value = '';
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        function showError(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<p class="error">${message}</p>`;
+            resultsDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
