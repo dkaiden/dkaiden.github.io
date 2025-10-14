@@ -1,0 +1,145 @@
+/* Import variables */
+@import url('variables.css');
+
+/* Base styles */
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-light);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background-image: var(--background-blue);
+  text-align: center;  /* ADD THIS LINE */
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+h1 {
+  color: var(--secondary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-decoration: none;
+  padding: 10px 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.back-link:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Common form styles */
+.input-form {
+  margin: 20px auto;
+  max-width: 500px;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  padding: 10px 15px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-clear {
+  background-color: #6c757d;
+}
+
+.btn-clear:hover {
+  background-color: #5a6268;
+}
+
+.results {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.error {
+  color: var(--error-color);
+  font-weight: bold;
+}
+
+/* Assignment list styles */
+.part-link {
+  display: block;
+  background-color: #f8f9fa;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px 0;
+  text-decoration: none;
+  color: #495057;
+  transition: all 0.3s;
+}
+
+.part-link:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.part-title {
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-size: 1.2em;
+}
+
+.part-desc {
+  margin-top: 8px;
+  color: var(--text-light);
+}
+
+.part-links {
+  margin: 30px 0;
+}
+
+.nav-links {
+  margin-top: 30px;
+  text-align: center;
+}

@@ -1,0 +1,203 @@
+/* Homework 3 Specific Styles */
+
+/* Part 1 - Student Grades */
+.grade-display {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.grade-item {
+    text-align: center;
+}
+
+.grade-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.letter-grade {
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+}
+
+.grade-a { background-color: #28a745; }
+.grade-b { background-color: #20c997; }
+.grade-c { background-color: #ffc107; }
+.grade-d { background-color: #fd7e14; }
+.grade-f { background-color: #dc3545; }
+
+.weight-info {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+.success {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.warning {
+    color: #ffc107;
+    font-weight: bold;
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Part 2 - Sales Commission */
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.sales-table th, .sales-table td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: center;
+}
+
+.sales-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.sales-table input[type="number"] {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.sales-table input[readonly] {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.item-total, .summary-value {
+    font-family: monospace;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.input-group input {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+/* Extra Credit - Multiplication Game */
+.game-area {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.question {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin: 20px 0;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.answer-input {
+    padding: 12px;
+    font-size: 18px;
+    width: 150px;
+    text-align: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.btn-yes {
+    background-color: #28a745;
+}
+
+.btn-yes:hover {
+    background-color: #218838;
+}
+
+.btn-no {
+    background-color: #dc3545;
+}
+
+.btn-no:hover {
+    background-color: #c82333;
+}
+
+.feedback {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.good {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.bad {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.decision-buttons {
+    margin-top: 20px;
+}
+
+.decision-buttons p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
