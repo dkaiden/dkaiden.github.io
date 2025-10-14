@@ -36,6 +36,11 @@
                 
                 const table = document.createElement('table');
                 table.className = 'multiplication-table';
+
+                // Add caption for accessibility
+                const caption = document.createElement('caption');
+                caption.textContent = `Multiplication Table for ${multiplier}`;
+                table.appendChild(caption);
                 
                 // Create table header
                 const thead = document.createElement('thead');
