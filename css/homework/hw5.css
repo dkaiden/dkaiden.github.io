@@ -1,0 +1,11 @@
+/* Homework 5 Specific Styles - To be completed */
+
+.coming-soon {
+    text-align: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #6c757d;
+}
