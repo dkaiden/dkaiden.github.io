@@ -11,9 +11,18 @@
     <main>
         <h1>Homework 5 - Part 2: State Information Lookup</h1>
         
-        <div class="coming-soon">
-            <p>To be completed - State Information Lookup with arrays</p>
-        </div>
+        <form id="stateForm" class="input-form">
+            <div class="form-group">
+                <label for="stateInput">Enter State Name or Abbreviation:</label>
+                <input type="text" id="stateInput" name="stateInput" placeholder="e.g., California or CA">
+                <span id="stateError" class="error"></span>
+            </div>
+            
+            <button type="button" class="btn" onclick="lookupState()">Get State Info</button>
+            <button type="button" class="btn btn-clear" onclick="clearStateForm()">Clear Form</button>
+        </form>
+        
+        <div id="stateOutput" class="results"></div>
         
         <nav class="nav-links">
             <a href="index.html" class="back-link">Back to Homework 5 Main Page</a>
@@ -22,7 +31,71 @@
     </main>
 
     <script>
-        // To be completed
+        // 2D array for state data
+        const states = [
+            ['AL', 'Alabama', 'Montgomery', '5,157,699'],
+            ['AK', 'Alaska', 'Juneau', '740,133'],
+            ['AZ', 'Arizona', 'Phoenix', '7,582,384'],
+            ['AR', 'Arkansas', 'Little Rock', '3,088,354'],
+            ['CA', 'California', 'Sacramento', '39,431,263'],
+            ['CO', 'Colorado', 'Denver', '5,957,493']
+        ];
+
+        function lookupState() {
+            const input = document.getElementById('stateInput').value.trim();
+            const output = document.getElementById('stateOutput');
+            const error = document.getElementById('stateError');
+            
+            // Clear previous results and errors
+            output.innerHTML = '';
+            error.textContent = '';
+            
+            if (input === '') {
+                error.textContent = 'Please enter a state name or abbreviation';
+                return;
+            }
+            
+            const inputUpper = input.toUpperCase();
+            let foundState = null;
+            
+            // Search through the 2D array
+            for (let i = 0; i < states.length; i++) {
+                const state = states[i];
+                // Check both abbreviation and full name (case insensitive)
+                if (state[0].toUpperCase() === inputUpper || state[1].toUpperCase() === inputUpper) {
+                    foundState = state;
+                    break;
+                }
+            }
+            
+            if (foundState) {
+                // Display state information
+                output.innerHTML = `
+                    <h3>Thanks for your inquiry, here is the information you requested:</h3>
+                    <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                        <p><strong>State Abbr:</strong> ${foundState[0]}</p>
+                        <p><strong>State Name:</strong> ${foundState[1]}</p>
+                        <p><strong>Capital:</strong> ${foundState[2]}</p>
+                        <p><strong>Population:</strong> ${foundState[3]}</p>
+                    </div>
+                `;
+            } else {
+                // Show error with available states
+                const stateNames = states.map(state => state[1]).join(', ');
+                output.innerHTML = `
+                    <p style="color: red; font-weight: bold;">
+                        Sorry, we do not have information about "${input}"! 
+                        We only have information about: ${stateNames}
+                    </p>
+                `;
+            }
+        }
+        
+        function clearStateForm() {
+            document.getElementById('stateForm').reset();
+            document.getElementById('stateOutput').innerHTML = '';
+            document.getElementById('stateError').textContent = '';
+        }
     </script>
 </body>
 </html>

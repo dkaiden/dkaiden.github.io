@@ -19,10 +19,14 @@ This repository contains my homework assignments for CIS 114 JavaScript course a
 - **Part 2**: Multiplication tables from 5 to 9 using nested loops
 - **Extra Credit**: Hollow square pattern generator with user input
 
+### Homework 5: Arrays
+- **Part 1**: Form validation with user profile data (name, age group, browsers used, movie preferences)
+- **Part 2**: State information lookup using arrays (search by state name or abbreviation for capital and population data)
+
 ## Technologies Used
 - HTML5
 - CSS3 with external stylesheets
-- JavaScript (DOM manipulation, form validation, loops, functions)
+- JavaScript (DOM manipulation, form validation, loops, functions, arrays)
 
 ## Navigation
 All pages include proper navigation without relying on browser back buttons. Each homework has a main page linking to its parts, with links back to the main assignments page.

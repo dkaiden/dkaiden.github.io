@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 20px;
   background-image: var(--background-blue);
-  text-align: center;  /* ADD THIS LINE */
+  text-align: center;
 }
 
 main {
@@ -20,6 +20,7 @@ main {
   padding: 30px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  overflow: visible; /* Prevents clipping of dropdown menus and datalist options */
 }
 
 h1 {
