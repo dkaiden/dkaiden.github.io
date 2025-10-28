@@ -1,5 +1,4 @@
-/* Homework 5 Specific Styles - To be completed */
-
+/* Homework 5 Specific Styles - Part 1 Only */
 .coming-soon {
     text-align: center;
     padding: 40px;
@@ -8,4 +7,48 @@
     margin: 20px 0;
     font-style: italic;
     color: #6c757d;
+}
+
+/* Form styling for radio buttons and checkboxes */
+.form-group div {
+    margin: 5px 0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Text input and datalist styling */
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Error message styling */
+.error {
+    color: #dc3545;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Results/output area */
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    min-height: 50px;
 }

@@ -11,9 +11,69 @@
     <main>
         <h1>Homework 5 - Part 1: User Information Form</h1>
         
-        <div class="coming-soon">
-            <p>To be completed - User Information Form with validation</p>
-        </div>
+        <form id="userForm" class="input-form">
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                <span id="nameError" class="error"></span>
+            </div>
+            
+            <div class="form-group">
+                <label>Age Group:</label>
+                <div>
+                    <input type="radio" id="ageUnder21" name="ageGroup" value="under21">
+                    <label for="ageUnder21" style="display: inline; font-weight: normal;">Less than 21</label>
+                </div>
+                <div>
+                    <input type="radio" id="age21to50" name="ageGroup" value="21to50">
+                    <label for="age21to50" style="display: inline; font-weight: normal;">Between 21 and 50</label>
+                </div>
+                <div>
+                    <input type="radio" id="ageOver50" name="ageGroup" value="over50">
+                    <label for="ageOver50" style="display: inline; font-weight: normal;">Older than 50</label>
+                </div>
+                <span id="ageError" class="error"></span>
+            </div>
+            
+            <div class="form-group">
+                <label>Browsers Used:</label>
+                <div>
+                    <input type="checkbox" id="browserFirefox" name="browsers" value="Firefox">
+                    <label for="browserFirefox" style="display: inline; font-weight: normal;">Firefox</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="browserEdge" name="browsers" value="Edge">
+                    <label for="browserEdge" style="display: inline; font-weight: normal;">Edge</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="browserChrome" name="browsers" value="Chrome">
+                    <label for="browserChrome" style="display: inline; font-weight: normal;">Chrome</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="browserSafari" name="browsers" value="Safari">
+                    <label for="browserSafari" style="display: inline; font-weight: normal;">Safari</label>
+                </div>
+                <span id="browserError" class="error"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="movieType">Preferred Movie Type:</label>
+                <select id="movieType" name="movieType">
+                    <option value="">Select a movie type</option>
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                </select>
+                <span id="movieError" class="error"></span>
+            </div>
+            
+            <button type="button" class="btn" onclick="validateForm()">Submit Form</button>
+            <button type="button" class="btn btn-clear" onclick="clearForm()">Clear Form</button>
+        </form>
+        
+        <div id="output" class="results"></div>
         
         <nav class="nav-links">
             <a href="index.html" class="back-link">Back to Homework 5 Main Page</a>
@@ -22,7 +82,58 @@
     </main>
 
     <script>
-        // To be completed
+        function validateForm() {
+            // Clear previous errors and output
+            clearErrors();
+            document.getElementById('output').innerHTML = '';
+            
+            let isValid = true;
+            const fullName = document.getElementById('fullName').value.trim();
+            const ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+            const browsers = document.querySelectorAll('input[name="browsers"]:checked');
+            const movieType = document.getElementById('movieType').value;
+            
+            // Validate full name
+            if (fullName === '') {
+                document.getElementById('nameError').textContent = 'Full name is required';
+                isValid = false;
+            }
+            
+            // Validate age group
+            if (!ageGroup) {
+                document.getElementById('ageError').textContent = 'Please select an age group';
+                isValid = false;
+            }
+            
+            // Validate browsers
+            if (browsers.length === 0) {
+                document.getElementById('browserError').textContent = 'Please select at least one browser';
+                isValid = false;
+            }
+            
+            // Validate movie type
+            if (movieType === '') {
+                document.getElementById('movieError').textContent = 'Please select a movie type';
+                isValid = false;
+            }
+            
+            // If all valid, show success message
+            if (isValid) {
+                document.getElementById('output').innerHTML = 
+                    '<p style="color: green; font-weight: bold;">Thanks, your data was submitted!</p>';
+            }
+        }
+        
+        function clearForm() {
+            document.getElementById('userForm').reset();
+            clearErrors();
+            document.getElementById('output').innerHTML = '';
+        }
+        
+        function clearErrors() {
+            const errors = document.querySelectorAll('.error');
+            errors.forEach(error => error.textContent = '');
+        }
     </script>
 </body>
 </html>
