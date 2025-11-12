@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 6 Part 2 - Character Search Counter">
+    <title>Homework 6 - Part 2 | Web Programming Assignments</title>
+    <link rel="stylesheet" href="../../css/global/main.css">
+    <link rel="stylesheet" href="../../css/homework/hw6.css">
+</head>
+<body>
+    <main>
+        <h1>Character Search Counter</h1>
+        
+        <form id="searchForm" class="input-form character-form">
+            <div class="form-group">
+                <label for="longContent">Enter your content:</label>
+                <textarea id="longContent" name="longContent" 
+                         placeholder="Type any content here..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="searchChar">Enter a single character to search:</label>
+                <input type="text" id="searchChar" name="searchChar" 
+                       class="character-input" maxlength="1" 
+                       placeholder="e.g., a" required>
+            </div>
+            
+            <button type="button" class="btn" onclick="searchCharacter()">Search Character</button>
+            <button type="button" class="btn btn-clear" onclick="clearSearchForm()">Clear Form</button>
+        </form>
+        
+        <div id="searchOutput" class="results"></div>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="back-link">Back to Homework 6 Main Page</a>
+            <a href="../../hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        function searchCharacter() {
+            const content = document.getElementById('longContent').value;
+            const charInput = document.getElementById('searchChar').value;
+            const output = document.getElementById('searchOutput');
+            
+            // Clear previous output
+            output.innerHTML = '';
+            
+            // Validation
+            if (content === '') {
+                output.innerHTML = '<div class="error-message">Please enter some content to search</div>';
+                return;
+            }
+            
+            if (charInput === '') {
+                output.innerHTML = '<div class="error-message">Please enter a character to search for</div>';
+                return;
+            }
+            
+            if (charInput.length > 1) {
+                output.innerHTML = '<div class="error-message">Please enter only one character</div>';
+                return;
+            }
+            
+            const searchChar = charInput.toLowerCase();
+            let count = 0;
+            
+            // Count occurrences (case insensitive)
+            for (let i = 0; i < content.length; i++) {
+                if (content.charAt(i).toLowerCase() === searchChar) {
+                    count++;
+                }
+            }
+            
+            if (count > 0) {
+                // Character found - display result using string concatenation
+                output.innerHTML = 
+                    '<div class="search-results">' +
+                    '<div class="success-message">Character found!</div>' +
+                    '<div class="character-count">' +
+                    'The character "' + charInput + '" appears ' + count + ' time(s) in the content' +
+                    '</div>' +
+                    '</div>';
+            } else {
+                // Character not found - open new window
+                openNotFoundWindow(charInput);
+                // Clear the output area as specified
+                output.innerHTML = '';
+            }
+        }
+        
+        function openNotFoundWindow(char) {
+            // Create a new window
+            const newWindow = window.open('', '_blank', 'width=300,height=100,left=400,top=300');
+            
+            // Write content to the new window using string concatenation
+            const popupContent = 
+                '<html>' +
+                '<head>' +
+                '<title>Character Not Found</title>' +
+                '<style>' +
+                'body { ' +
+                '    font-family: Arial, sans-serif; ' +
+                '    text-align: center; ' +
+                '    padding: 20px;' +
+                '    background-color: #f8f9fa;' +
+                '}' +
+                '.message { ' +
+                '    color: #dc3545; ' +
+                '    margin-bottom: 15px;' +
+                '}' +
+                '.close-btn {' +
+                '    padding: 5px 15px;' +
+                '    background-color: #3498db;' +
+                '    color: white;' +
+                '    border: none;' +
+                '    border-radius: 4px;' +
+                '    cursor: pointer;' +
+                '}' +
+                '.close-btn:hover {' +
+                '    background-color: #2980b9;' +
+                '}' +
+                '</style>' +
+                '</head>' +
+                '<body>' +
+                '<div class="message">' +
+                '    Search character "' + char + '" not found in the content you typed' +
+                '</div>' +
+                '<button onclick="window.close()" class="close-btn">Close Window</button>' +
+                '</body>' +
+                '</html>';
+            
+            newWindow.document.write(popupContent);
+            newWindow.document.close();
+        }
+        
+        function clearSearchForm() {
+            document.getElementById('searchForm').reset();
+            document.getElementById('searchOutput').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

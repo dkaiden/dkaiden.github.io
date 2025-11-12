@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 6 Part 1 - Number Formatting and Rounding">
+    <title>Homework 6 - Part 1 | Web Programming Assignments</title>
+    <link rel="stylesheet" href="../../css/global/main.css">
+    <link rel="stylesheet" href="../../css/homework/hw6.css">
+</head>
+<body>
+    <main>
+        <h1>Number Formatting and Rounding</h1>
+        
+        <form id="decimalForm" class="input-form decimal-form">
+            <div class="form-group">
+                <label for="decimalNumber">Enter a number with at least 4 decimals:</label>
+                <input type="number" step="any" id="decimalNumber" name="decimalNumber" 
+                       placeholder="e.g., 4.3264" required>
+                <small style="color: #666;">Must have at least 4 decimal places (e.g., 4.3264)</small>
+            </div>
+            
+            <button type="button" class="btn" onclick="processNumber()">Calculate</button>
+            <button type="button" class="btn btn-clear" onclick="clearForm()">Clear Form</button>
+        </form>
+        
+        <div id="output" class="results"></div>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="back-link">Back to Homework 6 Main Page</a>
+            <a href="../../hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        function processNumber() {
+            const input = document.getElementById('decimalNumber').value.trim();
+            const output = document.getElementById('output');
+            
+            // Clear previous output
+            output.innerHTML = '';
+            
+            if (input === '') {
+                output.innerHTML = '<div class="error-message">Please enter a number</div>';
+                return;
+            }
+            
+            const number = parseFloat(input);
+            
+            // Check if it's a valid number
+            if (isNaN(number)) {
+                output.innerHTML = '<div class="error-message">Please enter a valid number</div>';
+                return;
+            }
+            
+            // Check if number has at least 4 decimal places
+            const decimalPart = input.split('.')[1];
+            if (!decimalPart || decimalPart.length < 4) {
+                output.innerHTML = '<div class="error-message">You need to type a number with at least 4 decimals, please try again</div>';
+                return;
+            }
+            
+            // Perform calculations
+            const roundedInteger = Math.round(number);
+            const sqrtRounded = Math.round(Math.sqrt(number));
+            const roundedTenths = number.toFixed(1);
+            const roundedHundredths = number.toFixed(2);
+            const roundedThousandths = number.toFixed(3);
+            
+            // Display results
+            output.innerHTML = `
+                <div class="number-results">
+                    <h3>Calculation Results</h3>
+                    <p><strong>You typed number:</strong> ${number}</p>
+                    <div class="result-item">
+                        <strong>Rounded to the nearest integer:</strong> ${roundedInteger}
+                    </div>
+                    <div class="result-item">
+                        <strong>Square root rounded to integer:</strong> ${sqrtRounded}
+                    </div>
+                    <div class="result-item">
+                        <strong>Rounded to the nearest 10th position:</strong> ${roundedTenths}
+                    </div>
+                    <div class="result-item">
+                        <strong>Rounded to the nearest 100th position:</strong> ${roundedHundredths}
+                    </div>
+                    <div class="result-item">
+                        <strong>Rounded to the nearest 1000th position:</strong> ${roundedThousandths}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function clearForm() {
+            document.getElementById('decimalForm').reset();
+            document.getElementById('output').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
