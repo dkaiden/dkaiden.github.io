@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 7 Part 2 - Cookie Management">
+    <title>Homework 7 - Part 2 | Web Programming Assignments</title>
+    <link rel="stylesheet" href="../../../css/global/main.css">
+    <link rel="stylesheet" href="../../../css/homework/hw7.css">
+</head>
+<body onload="checkCookies()">
+    <main>
+        <h1>User Information Cookie Management</h1>
+        
+        <div id="welcomeMessage" class="cookie-message" style="display: none;">
+            <!-- Welcome message will be displayed here if cookies exist -->
+        </div>
+        
+        <div id="cookieFormContainer">
+            <!-- Form will be displayed here if no cookies exist -->
+        </div>
+        
+        <div id="cookieInfo" class="cookie-info" style="display: none;">
+            <h3>Cookie Information</h3>
+            <p><strong>Note:</strong> These cookies will be automatically deleted when you close your browser completely (not just this tab or window).</p>
+            <p>To test the functionality:</p>
+            <ol>
+                <li>Enter your name and username below and submit</li>
+                <li>Refresh the page - you should see a welcome message</li>
+                <li>Close your browser completely and reopen</li>
+                <li>Visit this page again - you should see the form again</li>
+            </ol>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="back-link">Back to Homework 7 Main Page</a>
+            <a href="../../../hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        // Cookie functions
+        function setCookie(cname, cvalue) {
+            // Set cookie without expiration date = session cookie
+            // Adding path to ensure cookie is accessible
+            document.cookie = cname + "=" + cvalue + ";path=/";
+        }
+        
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        
+        function deleteCookie(cname) {
+            // Set expiration date in the past to delete cookie
+            document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+        
+        function checkCookies() {
+            const userName = getCookie("userName");
+            const userUsername = getCookie("userUsername");
+            const welcomeMessage = document.getElementById("welcomeMessage");
+            const cookieFormContainer = document.getElementById("cookieFormContainer");
+            const cookieInfo = document.getElementById("cookieInfo");
+            
+            if (userName !== "" && userUsername !== "") {
+                // Cookies exist - show welcome message
+                welcomeMessage.innerHTML = "Welcome back, " + userName + "! (Username: " + userUsername + ")";
+                welcomeMessage.style.display = "block";
+                cookieFormContainer.innerHTML = "";
+                cookieInfo.style.display = "block";
+            } else {
+                // No cookies - show form
+                welcomeMessage.style.display = "none";
+                cookieFormContainer.innerHTML = `
+                    <form class="cookie-form" id="userForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="userName">Your Name:</label>
+                                <input type="text" id="userName" name="userName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userUsername">Your Username:</label>
+                                <input type="text" id="userUsername" name="userUsername" required>
+                            </div>
+                        </div>
+                        <button type="button" class="btn" onclick="saveUserInfo()">Save Information</button>
+                    </form>
+                `;
+                cookieInfo.style.display = "block";
+            }
+        }
+        
+        function saveUserInfo() {
+            const userName = document.getElementById("userName").value;
+            const userUsername = document.getElementById("userUsername").value;
+            
+            if (userName && userUsername) {
+                // Set both cookies
+                setCookie("userName", userName);
+                setCookie("userUsername", userUsername);
+                
+                // Reload page to show welcome message
+                location.reload();
+            } else {
+                alert("Please fill in both fields.");
+            }
+        }
+        
+        // Optional: Function to clear cookies for testing
+        function clearCookies() {
+            deleteCookie("userName");
+            deleteCookie("userUsername");
+            location.reload();
+        }
+    </script>
+</body>
+</html>

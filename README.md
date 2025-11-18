@@ -23,10 +23,18 @@ This repository contains my homework assignments for CIS 114 JavaScript course a
 - **Part 1**: Form validation with user profile data (name, age group, browsers used, movie preferences)
 - **Part 2**: State information lookup using arrays (search by state name or abbreviation for capital and population data)
 
+### Homework 6: Objects
+- **Part 1**: Number formatting and rounding operations using Math object methods
+- **Part 2**: Character search counter with case-insensitive search and popup error messages
+
+### Homework 7: Object Model and Cookies
+- **Part 1**: Dynamic style application using DOM manipulation with real-time updates
+- **Part 2**: Cookie management for storing and retrieving user information with session-based expiration
+
 ## Technologies Used
 - HTML5
 - CSS3 with external stylesheets
-- JavaScript (DOM manipulation, form validation, loops, functions, arrays)
+- JavaScript (DOM manipulation, form validation, loops, functions, arrays, objects, cookies)
 
 ## Navigation
 All pages include proper navigation without relying on browser back buttons. Each homework has a main page linking to its parts, with links back to the main assignments page.

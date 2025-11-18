@@ -43,10 +43,8 @@
             const charInput = document.getElementById('searchChar').value;
             const output = document.getElementById('searchOutput');
             
-            // Clear previous output
             output.innerHTML = '';
             
-            // Validation
             if (content === '') {
                 output.innerHTML = '<div class="error-message">Please enter some content to search</div>';
                 return;
@@ -65,7 +63,6 @@
             const searchChar = charInput.toLowerCase();
             let count = 0;
             
-            // Count occurrences (case insensitive)
             for (let i = 0; i < content.length; i++) {
                 if (content.charAt(i).toLowerCase() === searchChar) {
                     count++;
@@ -73,7 +70,6 @@
             }
             
             if (count > 0) {
-                // Character found - display result using string concatenation
                 output.innerHTML = 
                     '<div class="search-results">' +
                     '<div class="success-message">Character found!</div>' +
@@ -82,53 +78,15 @@
                     '</div>' +
                     '</div>';
             } else {
-                // Character not found - open new window
                 openNotFoundWindow(charInput);
-                // Clear the output area as specified
                 output.innerHTML = '';
             }
         }
         
         function openNotFoundWindow(char) {
-            // Create a new window
             const newWindow = window.open('', '_blank', 'width=300,height=100,left=400,top=300');
             
-            // Write content to the new window using string concatenation
-            const popupContent = 
-                '<html>' +
-                '<head>' +
-                '<title>Character Not Found</title>' +
-                '<style>' +
-                'body { ' +
-                '    font-family: Arial, sans-serif; ' +
-                '    text-align: center; ' +
-                '    padding: 20px;' +
-                '    background-color: #f8f9fa;' +
-                '}' +
-                '.message { ' +
-                '    color: #dc3545; ' +
-                '    margin-bottom: 15px;' +
-                '}' +
-                '.close-btn {' +
-                '    padding: 5px 15px;' +
-                '    background-color: #3498db;' +
-                '    color: white;' +
-                '    border: none;' +
-                '    border-radius: 4px;' +
-                '    cursor: pointer;' +
-                '}' +
-                '.close-btn:hover {' +
-                '    background-color: #2980b9;' +
-                '}' +
-                '</style>' +
-                '</head>' +
-                '<body>' +
-                '<div class="message">' +
-                '    Search character "' + char + '" not found in the content you typed' +
-                '</div>' +
-                '<button onclick="window.close()" class="close-btn">Close Window</button>' +
-                '</body>' +
-                '</html>';
+            const popupContent = '<!DOCTYPE html><html><head><title>Character Not Found</title><style>body{font-family:Arial,sans-serif;text-align:center;padding:20px;background-color:#f8f9fa;}.message{color:#dc3545;margin-bottom:15px;}.close-btn{padding:5px 15px;background-color:#3498db;color:white;border:none;border-radius:4px;cursor:pointer;}.close-btn:hover{background-color:#2980b9;}</style></head><body><div class="message">Search character "' + char + '" not found in the content you typed</div><button onclick="window.close()" class="close-btn">Close Window</button></body></html>';
             
             newWindow.document.write(popupContent);
             newWindow.document.close();

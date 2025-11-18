@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 7 Part 1 - Dynamic Style Application">
+    <title>Homework 7 - Part 1 | Web Programming Assignments</title>
+    <link rel="stylesheet" href="../../../css/global/main.css">
+    <link rel="stylesheet" href="../../../css/homework/hw7.css">
+</head>
+<body>
+    <main>
+        <h1>Dynamic Style Application</h1>
+    
+        <section class="styling-area" id="contentArea">
+            <p>This page and text will be styled dynamically based on your selections below. As you choose different styles, watch how this content changes in real-time.</p>
+            <p>Notice how all paragraphs in this section are affected by your style choices. The changes happen immediately without needing to submit a form.</p>
+            <p>You can combine multiple styles - try selecting a background color, making the text bold and italic, and changing the font size all at once!</p>
+        </section>
+    
+        <form class="style-form" id="styleForm">
+            <div class="form-section">
+                <h3>Background Color</h3>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="backgroundColor" value="#ffffff" checked>
+                        White
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="backgroundColor" value="#e0f0ff">
+                        Light Blue
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="backgroundColor" value="#f0e0ff">
+                        Light Purple
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="backgroundColor" value="#fff0e0">
+                        Light Orange
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Text Styles</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="textStyle" value="bold">
+                        Bold
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="textStyle" value="italic">
+                        Italic
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="textStyle" value="underline">
+                        Underline
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Font Size</h3>
+                <div class="select-group">
+                    <select name="fontSize" id="fontSize">
+                        <option value="1em">Normal (1em)</option>
+                        <option value="1.2em">Large (1.2em)</option>
+                        <option value="1.4em">Extra Large (1.4em)</option>
+                        <option value="0.8em">Small (0.8em)</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="back-link">Back to Homework 7 Main Page</a>
+            <a href="../../../hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        // Get DOM elements
+        const contentArea = document.getElementById('contentArea');
+        const styleForm = document.getElementById('styleForm');
+        
+        // Add event listeners to all form controls
+        const formControls = styleForm.querySelectorAll('input, select');
+        formControls.forEach(control => {
+            control.addEventListener('change', applyStyles);
+        });
+        
+        function applyStyles() {
+            // Reset styles first
+            contentArea.style.backgroundColor = '';
+            contentArea.style.fontWeight = '';
+            contentArea.style.fontStyle = '';
+            contentArea.style.textDecoration = '';
+            contentArea.style.fontSize = '';
+            
+            // Apply background color from radio buttons
+            const selectedBackground = styleForm.querySelector('input[name="backgroundColor"]:checked');
+            if (selectedBackground) {
+                contentArea.style.backgroundColor = selectedBackground.value;
+            }
+            
+            // Apply text styles from checkboxes
+            const selectedStyles = styleForm.querySelectorAll('input[name="textStyle"]:checked');
+            selectedStyles.forEach(checkbox => {
+                switch(checkbox.value) {
+                    case 'bold':
+                        contentArea.style.fontWeight = 'bold';
+                        break;
+                    case 'italic':
+                        contentArea.style.fontStyle = 'italic';
+                        break;
+                    case 'underline':
+                        contentArea.style.textDecoration = 'underline';
+                        break;
+                }
+            });
+            
+            // Apply font size from dropdown
+            const fontSizeSelect = document.getElementById('fontSize');
+            contentArea.style.fontSize = fontSizeSelect.value;
+        }
+        
+        // Initialize with default styles
+        applyStyles();
+    </script>
+</body>
+</html>
