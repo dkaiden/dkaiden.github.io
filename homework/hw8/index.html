@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 8 - AJAX Application</title>
+    <link rel="stylesheet" href="../../../css/global/main.css">
+    <link rel="stylesheet" href="../../../css/homework/hw7.css">
+    <style>
+        main { max-width: 800px; margin: auto; padding: 20px; }
+        h1, h2 { color: var(--primary-color); }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid var(--border-color); padding: 10px; text-align: left; }
+        .report { background: #f8f9fa; padding: 20px; margin: 30px 0; border-radius: 8px; box-shadow: var(--box-shadow); }
+        .extra-credit { background: #fff3cd; border: 1px solid #ffeaa7; padding: 20px; margin: 30px 0; border-radius: 8px; }
+        .nav-links { margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border-color); }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Homework 8 - AJAX Application</h1>
+        
+        <section>
+            <h2>CD Collection Viewer</h2>
+            <button type="button" class="btn" onclick="loadDoc()">Get CD Collection</button>
+            <table id="demo"></table>
+        </section>
+        
+        <section>
+            <h2>Explanation of AJAX</h2>
+            <p>When the button is clicked, JavaScript creates an XMLHttpRequest object. This object sends a GET request to fetch <code>cd_catalog.xml</code> asynchronously. When the server responds, the XML is parsed and converted into an HTML table which updates only that section of the page, without refreshing the entire page.</p>
+        </section>
+        
+        <section class="report">
+            <h2>REST API Report</h2>
+            <p><strong>API:</strong> Dog CEO Dog API (from apilist.fun)</p>
+            <p><strong>Response Format:</strong> JSON</p>
+            <p><strong>Authentication:</strong> No API key required</p>
+            <p><strong>Cost:</strong> Free, no usage limits</p>
+            <p><strong>Use Case:</strong> Good for projects needing random dog images without authentication hassles.</p>
+            <p><strong>Documentation:</strong> <a href="https://dog.ceo/dog-api/documentation">Dog CEO Dog API Documentation</a></p>
+        </section>
+        
+        <section class="extra-credit">
+            <h2>Extra Credit</h2>
+            <p>I have implemented a working example using the Dog CEO Dog API:</p>
+            <a href="extra.html" class="btn" style="display: inline-block; margin-top: 10px;">View Dog API Demo</a>
+            <p style="margin-top: 10px;"><em>This page fetches and displays random dog images using modern JavaScript Fetch API.</em></p>
+        </section>
+        
+        <nav class="nav-links">
+            <a href="../../../hw1.html" class="back-link">Back to Assignments</a>
+        </nav>
+    </main>
+
+    <script>
+        function loadDoc() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() { myFunction(this); };
+            xhttp.open("GET", "cd_catalog.xml");
+            xhttp.send();
+        }
+        
+        function myFunction(xml) {
+            const xmlDoc = xml.responseXML;
+            const cds = xmlDoc.getElementsByTagName("CD");
+            let table = "<tr><th>Artist</th><th>Title</th><th>Year</th><th>Price</th></tr>";
+            
+            for (let i = 0; i < cds.length; i++) { 
+                table += `<tr>
+                    <td>${cds[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue}</td>
+                    <td>${cds[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue}</td>
+                    <td>${cds[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue}</td>
+                    <td>$${cds[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue}</td>
+                </tr>`;
+            }
+            document.getElementById("demo").innerHTML = table;
+        }
+    </script>
+</body>
+</html>

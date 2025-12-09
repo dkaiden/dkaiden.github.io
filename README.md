@@ -31,10 +31,14 @@ This repository contains my homework assignments for CIS 114 JavaScript course a
 - **Part 1**: Dynamic style application using DOM manipulation with real-time updates
 - **Part 2**: Cookie management for storing and retrieving user information with session-based expiration
 
+### Homework 8: Ajax Applications
+- **Main Page**: AJAX implementation using XMLHttpRequest to fetch and display CD catalog data from an XML file, with explanation of AJAX and REST API report on Dog CEO Dog API
+- **Extra Credit**: Working example using Dog CEO Dog API to fetch and display random dog images with Fetch API
+
 ## Technologies Used
 - HTML5
 - CSS3 with external stylesheets
-- JavaScript (DOM manipulation, form validation, loops, functions, arrays, objects, cookies)
+- JavaScript (DOM manipulation, form validation, loops, functions, arrays, objects, cookies, AJAX, XML parsing, REST APIs)
 
 ## Navigation
 All pages include proper navigation without relying on browser back buttons. Each homework has a main page linking to its parts, with links back to the main assignments page.
