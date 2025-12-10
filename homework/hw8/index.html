@@ -13,6 +13,7 @@
         .report { background: #f8f9fa; padding: 20px; margin: 30px 0; border-radius: 8px; box-shadow: var(--box-shadow); }
         .extra-credit { background: #fff3cd; border: 1px solid #ffeaa7; padding: 20px; margin: 30px 0; border-radius: 8px; }
         .nav-links { margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border-color); }
+        code { background: #f1f1f1; padding: 2px 4px; border-radius: 3px; }
     </style>
 </head>
 <body>
@@ -27,7 +28,7 @@
         
         <section>
             <h2>Explanation of AJAX</h2>
-            <p>When the button is clicked, JavaScript creates an XMLHttpRequest object. This object sends a GET request to fetch <code>cd_catalog.xml</code> asynchronously. When the server responds, the XML is parsed and converted into an HTML table which updates only that section of the page, without refreshing the entire page.</p>
+            <p>This page uses one AJAX call in the <code>loadDoc()</code> function. When the button is clicked, an <code>XMLHttpRequest</code> object is created. The <code>open()</code> method configures it with <code>GET</code> as the HTTP method and <code>"cd_catalog.xml"</code> as the URL. The <code>true</code> parameter makes it asynchronous. The <code>send()</code> method initiates the request. When the XML response arrives, the <code>onload</code> event triggers <code>myFunction()</code>, which parses the XML using <code>responseXML</code>, extracts CD data with <code>getElementsByTagName()</code>, and builds an HTML table by looping through each <code>&lt;CD&gt;</code> element. The table is inserted into the page using <code>innerHTML</code>, updating only that section without refreshing the whole page.</p>
         </section>
         
         <section class="report">
@@ -36,8 +37,9 @@
             <p><strong>Response Format:</strong> JSON</p>
             <p><strong>Authentication:</strong> No API key required</p>
             <p><strong>Cost:</strong> Free, no usage limits</p>
-            <p><strong>Use Case:</strong> Good for projects needing random dog images without authentication hassles.</p>
+            <p><strong>Use Case:</strong> Great for projects needing random dog images without authentication hassles.</p>
             <p><strong>Documentation:</strong> <a href="https://dog.ceo/dog-api/documentation">Dog CEO Dog API Documentation</a></p>
+            <p>The Dog CEO Dog API is a RESTful service that provides access to a large collection of high-quality, breed-specific dog images. It's designed specifically for developers who want to easily integrate dog photos into their applications without the hassle of managing their own image database or dealing with complex authentication systems. What makes this API really stand out is how easy it is to get started. You don't need to sign up for an account or deal with API keys - just hit the endpoint and you'll get back clean JSON with direct image URLs. It's perfect for adding some fun to pet apps, building quick prototypes, or even just testing your AJAX skills. The image quality is solid, the response time is fast, and since it's completely free, you can use it in class projects or small personal apps without worrying about hitting limits. For developers who want to work with real API data without the usual setup headaches, this is a great choice.</p>
         </section>
         
         <section class="extra-credit">
